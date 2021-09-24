@@ -15,23 +15,33 @@ public class Persistir {
         tx.begin();
 
         Proprietario proprietario = new Proprietario();
-        proprietario.setNome("Venes Lopes");
-        proprietario.setEmail("venes.lopes@gmail.com");
+        proprietario.setNome("Anny Marcielly");
+        proprietario.setEmail("consultoria_anny@gmail.com");
         proprietario.setTelefone("(98)98600-4587");
-
         manager.persist(proprietario);
 
         Veiculo veiculo = new Veiculo();
-        veiculo.setModelo("Corola");
-        veiculo.setFabricante("Toyota");
-        veiculo.setAnoFabricacao(2022);
-        veiculo.setAnoModelo(2022);
-        veiculo.setValor(new BigDecimal(160_000));
-        veiculo.setTipoCombustivel(TipoCombustivel.BICOMBUSTIVEL);
+        veiculo.setModelo("Celta");
+        veiculo.setFabricante("Chevrollet");
+        veiculo.setAnoFabricacao(2019);
+        veiculo.setAnoModelo(2019);
+        veiculo.setValor(new BigDecimal(20_000));
+        veiculo.setTipoCombustivel(TipoCombustivel.GASOLINA);
         veiculo.setDataCadastro(LocalDate.now());
         veiculo.setProprietario(proprietario);
-
         manager.persist(veiculo);
+
+        Veiculo veiculo2 = new Veiculo();
+        veiculo2.setModelo("Gol");
+        veiculo2.setFabricante("VW");
+        veiculo2.setAnoFabricacao(2020);
+        veiculo2.setAnoModelo(2020);
+        veiculo2.setValor(new BigDecimal(25_000));
+        veiculo2.setTipoCombustivel(TipoCombustivel.GASOLINA);
+        veiculo2.setDataCadastro(LocalDate.now());
+        veiculo2.setProprietario(proprietario);
+        manager.persist(veiculo2);
+
         tx.commit();
 
         manager.close();

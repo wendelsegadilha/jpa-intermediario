@@ -2,6 +2,8 @@ package dominio;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -21,8 +23,8 @@ public class Proprietario implements Serializable {
     @Column(length = 255)
     private String email;
 
-    @OneToOne(mappedBy = "proprietario")
-    private Veiculo veiculo;
+    @OneToMany(mappedBy = "proprietario")
+    private List<Veiculo> veiculos = new ArrayList<>();
 
     public Integer getCodigo() {
         return codigo;
@@ -56,12 +58,8 @@ public class Proprietario implements Serializable {
         this.email = email;
     }
 
-    public Veiculo getVeiculo() {
-        return veiculo;
-    }
-
-    public void setVeiculo(Veiculo veiculo) {
-        this.veiculo = veiculo;
+    public List<Veiculo> getVeiculos() {
+        return veiculos;
     }
 
     @Override

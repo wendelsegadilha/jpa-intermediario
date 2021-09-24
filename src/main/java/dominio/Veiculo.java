@@ -36,7 +36,7 @@ public class Veiculo implements Serializable {
     @Column(name = "data_cadastro", nullable = false)
     private LocalDate dataCadastro;
 
-    @OneToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "cod_proprietario")
     private Proprietario proprietario;
 

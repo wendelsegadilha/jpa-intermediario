@@ -8,16 +8,13 @@ import java.util.List;
 public class Consulta {
     public static void main(String[] args) {
         EntityManager manager = JpaUtil.getEtityManager();
-        List<Veiculo> veiculos = manager.createQuery("select v from Veiculo v", Veiculo.class).getResultList();
 
-        veiculos.stream()
-                .forEach(v -> System.out.println(v.getModelo() + " - " + v.getProprietario().getNome()));
+        Proprietario proprietario = manager.find(Proprietario.class, 1);
+        System.out.println("Proprietario: " + proprietario.getNome());
 
-        Veiculo veiculo = manager.find(Veiculo.class, 1L);
-        System.out.println(veiculo.getModelo() + " - " + veiculo.getProprietario().getNome());
+        List<Veiculo> veiculos = proprietario.getVeiculos();
+        veiculos.stream().forEach(v -> System.out.println("Veículo: " + v.getModelo()));
 
-        Proprietario proprietario = manager.find(Proprietario.class, 2);
-        System.out.println(proprietario.getNome() + " - " +proprietario.getVeiculo().getModelo());
 
         manager.close();
         JpaUtil.close();
