@@ -17,8 +17,10 @@ public class Proprietario implements Serializable {
     @Column(length = 60, nullable = false)
     private String nome;
 
-    @Column(length = 60, nullable = false)
-    private String telefone;
+    @ElementCollection
+    @CollectionTable(name = "proprietario_telefone", joinColumns = @JoinColumn(name = "proprietario_codigo"))
+    @Column(name = "telefone_numero", length = 20, nullable = false)
+    private List<String> telefones = new ArrayList<>();
 
     @Column(length = 255)
     private String email;
@@ -42,14 +44,6 @@ public class Proprietario implements Serializable {
         this.nome = nome;
     }
 
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -60,6 +54,10 @@ public class Proprietario implements Serializable {
 
     public List<Veiculo> getVeiculos() {
         return veiculos;
+    }
+
+    public List<String> getTelefones() {
+        return telefones;
     }
 
     @Override

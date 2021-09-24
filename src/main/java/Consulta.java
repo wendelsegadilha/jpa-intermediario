@@ -10,14 +10,12 @@ import java.util.Set;
 public class Consulta {
     public static void main(String[] args) {
         EntityManager manager = JpaUtil.getEtityManager();
+        Proprietario proprietario = manager.find(Proprietario.class, 1);
+        System.out.println("Proprietario: " + proprietario.getNome());
 
-        Veiculo veiculo = manager.find(Veiculo.class, 1L);
-        System.out.println("Veículo: " + veiculo.getModelo());
-
-        Set<Acessorio> acessorios = veiculo.getAcessorios();
-        acessorios.stream().forEach(a -> System.out.println("Acessório: " + a.getDescricao()));
-
-
+        List<String> telefones = proprietario.getTelefones();
+        telefones.forEach(t -> System.out.println(t));
+        
         manager.close();
         JpaUtil.close();
 
