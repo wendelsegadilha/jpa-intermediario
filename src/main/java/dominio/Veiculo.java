@@ -4,7 +4,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "veiculo")
@@ -39,6 +41,12 @@ public class Veiculo implements Serializable {
     @ManyToOne
     @JoinColumn(name = "cod_proprietario")
     private Proprietario proprietario;
+
+    @ManyToMany
+    @JoinTable(name = "veiculo_acessorio",
+    joinColumns = @JoinColumn(name = "veiculo_codigo"),
+    inverseJoinColumns = @JoinColumn(name = "acessorio_codigo"))
+    private Set<Acessorio> acessorios = new HashSet<>();
 
     public Long getCodigo() {
         return codigo;
@@ -110,6 +118,10 @@ public class Veiculo implements Serializable {
 
     public void setProprietario(Proprietario proprietario) {
         this.proprietario = proprietario;
+    }
+
+    public Set<Acessorio> getAcessorios() {
+        return acessorios;
     }
 
     @Override
