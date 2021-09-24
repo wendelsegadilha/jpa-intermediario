@@ -1,5 +1,6 @@
 import dominio.Acessorio;
 import dominio.Proprietario;
+import dominio.Telefone;
 import dominio.Veiculo;
 import util.JpaUtil;
 
@@ -13,9 +14,15 @@ public class Consulta {
         Proprietario proprietario = manager.find(Proprietario.class, 1);
         System.out.println("Proprietario: " + proprietario.getNome());
 
-        List<String> telefones = proprietario.getTelefones();
-        telefones.forEach(t -> System.out.println(t));
-        
+        List<Telefone> telefones = proprietario.getTelefones();
+
+        telefones.stream().forEach(t ->
+                System.out.println(
+                        "Telefone: (" + t.getPrefixo() + ")"
+                        + t.getNumero()
+                        +(t.getRamal() != null ? " x" + t.getRamal() : "")
+                ));
+
         manager.close();
         JpaUtil.close();
 

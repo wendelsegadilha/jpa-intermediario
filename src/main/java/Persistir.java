@@ -1,7 +1,4 @@
-import dominio.Acessorio;
-import dominio.Proprietario;
-import dominio.TipoCombustivel;
-import dominio.Veiculo;
+import dominio.*;
 import util.JpaUtil;
 
 import javax.persistence.EntityManager;
@@ -18,8 +15,8 @@ public class Persistir {
         Proprietario proprietario = new Proprietario();
         proprietario.setNome("Anny Marcielly");
         proprietario.setEmail("consultoria_anny@gmail.com");
-        proprietario.getTelefones().add("(98) 98600-3186");
-        proprietario.getTelefones().add("(98) 98531-4010");
+        proprietario.getTelefones().add(new Telefone("98", "986003186", "104"));
+        proprietario.getTelefones().add(new Telefone("98", "981345267",null));
         manager.persist(proprietario);
 
         tx.commit();
