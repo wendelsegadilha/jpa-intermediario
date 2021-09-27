@@ -34,8 +34,6 @@ public class PersistirHeranca {
         manager.persist(cliente2);
         tx.commit();
 
-
-
         manager.close();
         JpaUtil.close();
     }

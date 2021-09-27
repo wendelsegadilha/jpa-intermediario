@@ -1,12 +1,11 @@
 package dominio;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@DiscriminatorValue("C")
+@Table(name = "cliente")
+@PrimaryKeyJoinColumn(name = "pessoa_codigo")
 public class Cliente extends Pessoa{
 
     @Column(name = "limite_credito", nullable = true)
