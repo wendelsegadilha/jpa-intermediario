@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "funcionario")
-@PrimaryKeyJoinColumn(name = "pessoa_codigo")
 public class Funcionario extends Pessoa{
 
     @Column(name = "salario", nullable = true)
